@@ -1,5 +1,6 @@
 #include "LCD_i2c.h"
 
+
 //Prototypes
 uint8_t LCD_command(LCD_I2C_t *lcd_i2c, uint8_t command);
 uint8_t LCD_send(LCD_I2C_t *lcd_i2c, uint8_t data, uint8_t flags);

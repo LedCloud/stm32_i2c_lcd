@@ -25,13 +25,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+//for formatted output
 #include <stdio.h>
 
-#include "DWT_Delay.h"
-
-//#define USE_I2C_SCAN 1
-
-#include "LCD_i2c.h"
+//#define USE_I2C_SCAN
+//Include header file
+#include <LCD_i2c.h>
 
 /* USER CODE END Includes */
 
@@ -80,7 +79,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+  HAL_Init(); 
 
   /* USER CODE BEGIN Init */
 
@@ -103,11 +102,9 @@ int main(void)
   LCD_Init(&lcd, &hi2c1, 0x27, 20, 4);
 
   LCD_Backlight(&lcd, 1);
-  LCD_Clear(&lcd);
+  //LCD_Clear(&lcd);
 
   LCD_SendString(&lcd, "Hello World!");
-
-  
 
   char msg[10] = {0};
   uint8_t counter = 0;
@@ -120,10 +117,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    sprintf(msg, "%d ", counter++);
-    LCD_SetCursor(&lcd, 0,2);
+    LCD_SetCursor(&lcd, 0, 2);
+    sprintf(msg, "%d  ", counter++);
     LCD_SendString(&lcd, msg);
-    HAL_Delay(250);
+    DWT_Delay_ms(250);
   }
   /* USER CODE END 3 */
 }

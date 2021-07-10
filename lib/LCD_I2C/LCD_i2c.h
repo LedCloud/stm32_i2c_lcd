@@ -50,13 +50,7 @@ extern "C" {
 #include "stm32f1xx_hal.h"
 #include "DWT_Delay.h"
 
-#ifndef DELAY_MS
 #define DELAY_MS(x) DWT_Delay_ms(x)
-#endif
-
-#ifndef DELAY_US
-#define DELAY_US(x) DWT_Delay_us(x)
-#endif
 
 // commands
 #define LCD_CLEARDISPLAY 0x01
@@ -134,6 +128,7 @@ that's why the body of the function is placed here */
  */
 void I2C_Scan (I2C_HandleTypeDef *hi2c1, UART_HandleTypeDef *huart)
 {
+	error
 	// создание переменной, содержащей статус
 	HAL_StatusTypeDef res;                          
 	// сообщение о начале процедуры
@@ -221,10 +216,6 @@ void LCD_SetCursor(LCD_I2C_t *lcd_i2c, uint8_t col, uint8_t row);
  * @par str - pointer to string
  */
 void LCD_SendString(LCD_I2C_t *lcd_i2c, const char *str);
-
-///don't call it directly
-//uint8_t LCD_send(uint8_t data, uint8_t flags);
-//uint8_t LCD_command(uint8_t data);
 
 /* C++ detection */
 #ifdef __cplusplus
